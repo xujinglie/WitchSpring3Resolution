@@ -96,7 +96,7 @@ ExpandWorld = true
 仓库中的 `tools/Test-CursorBounds.ps1` 可读取 Windows 实际鼠标限制矩形和游戏客户端边界。先启动游戏，再在源码目录执行：
 
 ```powershell
-pwsh -NoProfile -File .\tools\Test-CursorBounds.ps1 -GameDirectory 'F:\SteamLibrary\steamapps\common\WitchSpring3'
+pwsh -NoProfile -File .\tools\Test-CursorBounds.ps1 -GameDirectory '\SteamLibrary\steamapps\common\WitchSpring3'
 ```
 
 添加 `-Sweep` 可依次将鼠标移动到窗口四角及四边中点附近，核对实际位置是否与目标相差不超过 1px；完成后恢复原鼠标位置。测试只在游戏位于前台时执行，不发送点击。运行期间请暂时不要移动鼠标；切换到其他窗口会中止扫描。
@@ -118,7 +118,7 @@ pwsh -NoProfile -File .\tools\Test-CursorBounds.ps1 -GameDirectory 'F:\SteamLibr
 需要 PowerShell 7、.NET SDK，以及已安装游戏和 BepInEx 的本地目录。编译只使用本地程序集，无需 NuGet；仓库不包含游戏 DLL 或 BepInEx 二进制。
 
 ```powershell
-pwsh -NoProfile -File .\build.ps1 -GameDirectory 'F:\SteamLibrary\steamapps\common\WitchSpring3'
+pwsh -NoProfile -File .\build.ps1 -GameDirectory '\SteamLibrary\steamapps\common\WitchSpring3'
 ```
 
 输出：`dist/WitchSpring3Resolution.dll`。游戏关闭后，将其复制到插件安装目录即可。
@@ -126,7 +126,7 @@ pwsh -NoProfile -File .\build.ps1 -GameDirectory 'F:\SteamLibrary\steamapps\comm
 生成与发布版相同结构的安装 ZIP：
 
 ```powershell
-pwsh -NoProfile -File .\package.ps1 -GameDirectory 'F:\SteamLibrary\steamapps\common\WitchSpring3'
+pwsh -NoProfile -File .\package.ps1 -GameDirectory '\SteamLibrary\steamapps\common\WitchSpring3'
 ```
 
 输出：`dist/WitchSpring3Resolution-v1.0.1.zip` 及 SHA256 校验文件。

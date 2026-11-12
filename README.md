@@ -91,6 +91,18 @@ ExpandWorld = true
 
 诊断输出在游戏目录的 `ModDev/resolution-reports/`，包含 PNG、UI 边界及字号 CSV、按钮交集候选 CSV、相机参数 CSV 和汇总 TXT。诊断不会修改存档。
 
+### 鼠标边界检查
+
+仓库中的 `tools/Test-CursorBounds.ps1` 可读取 Windows 实际鼠标限制矩形和游戏客户端边界。先启动游戏，再在源码目录执行：
+
+```powershell
+pwsh -NoProfile -File .\tools\Test-CursorBounds.ps1 -GameDirectory 'F:\SteamLibrary\steamapps\common\WitchSpring3'
+```
+
+添加 `-Sweep` 可依次将鼠标移动到窗口四角及四边中点附近，核对实际位置是否与目标相差不超过 1px；完成后恢复原鼠标位置。测试只在游戏位于前台时执行，不发送点击。运行期间请暂时不要移动鼠标；切换到其他窗口会中止扫描。
+
+结果保存为游戏目录下的 `ModDev/resolution-reports/cursor-bounds.json`，可用 `-Name` 指定报告名。`client` 和 `clip` 使用屏幕坐标，`samples` 使用游戏客户端坐标。该检查只验证系统鼠标可达范围，游戏内 UI 点击与角色移动响应仍需另行检查。
+
 ## 已验证范围
 
 - 四档窗口输出：3440×1440、2560×1440、1920×1080、1366×768。
